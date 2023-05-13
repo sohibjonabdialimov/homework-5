@@ -114,3 +114,6 @@ input[type="search"]{
 .buttons button:last-child{
   color: red;
 }
+.active{
+  color: red;
+}
