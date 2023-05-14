@@ -1,0 +1,57 @@
+.app{
+  padding: 50px;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  column-gap: 40px;
+}
+.app img{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.app h1{
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.btns{
+  display: flex;
+  gap: 20px;
+}
+.edit-btn, .delete-btn{
+  padding: 10px 25px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  border-radius: 10px;
+  outline: none;
+}
+.edit-btn{
+  color: blue;
+}
+.edit-btn:hover{
+  background-color: blue;
+  color: #fff;
+}
+.delete-btn{
+  color: red;
+}
+.delete-btn:hover{
+  background-color: rgb(244, 20, 20);
+  color: #fff;
+}
+.app__desc p{
+  margin-bottom: 1rem;
+  color: blue;
+  font-size: 32px;
+  font-weight: 600;
+}
+.app__desc span{
+  display: block;
+  font-size: 22px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 1rem;
+  padding: 0;
+}

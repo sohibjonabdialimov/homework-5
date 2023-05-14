@@ -1,119 +1,30 @@
-
-*{
+* {
   list-style: none;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-.app{
-  width: 100%;
-  height: 100vh;
-  background-color: #fff;
-  display: flex;
-}
-.list{
-  width: 25%;
-  background-color: #eee;
-  height: 100vh;
-  border-right: 1px solid #aaa;
-}
-.search{
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 30px;
-}
-input[type="search"]{
-  height: 40px;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  background-color: #fff;
-  width: 70%;
-  padding: 5px 8px 5px 25px;
-  font-size: 16px;
-}
-.btn{
-  height: 40px;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  background-color: #fff;
-  color: #00f;
-  width: 25%;
-  padding: 5px 0;
-  font-size: 16px;
-}
-.item{
-  display: block;
   text-decoration: none;
-  color: #333;
-  cursor: pointer;
-  padding: 10px;
-  margin: 5px 30px;
-}
-.group{
-  padding-top: 30px;
-  border-top: 1px solid #aaa;
-  overflow-y: scroll;
-  height: calc(100vh - 100px);
-}
-.group::-webkit-scrollbar {
-  display: none;
 }
 
-.group a.active{
-  background-color: #3A62F4;
-  color: #fff;
+input,
+textarea,
+button,
+a {
+  box-shadow: 5px 5px 5px #00000041;
 }
-.item p{
-  font-size: 25px;
+.h1-title {
+  text-align: center;
+  color: #444;
+  font-size: 50px;
+  margin-top: 50px;
+  font-weight: 700;
+  text-shadow: 3px 3px #00000037;
 }
-.card{
-  padding: 50px 100px 50px 100px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-.card img{
-  width: 350px;
-  height: 300px;
-  border-radius: 30px;
-}
-.desc h3{
-  font-size: 45px;
-}
-.desc p{
-  font-size: 22px;
-  margin-top: 20px;
-}
-.desc span{
-  font-size: 26px;
-  margin-top: 20px;
-  color: #00f;
-  display: block;
-  margin-top: 15px;
-}
-.buttons{
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 35px;
-}
-.buttons button{
-  padding: 15px 40px;
-  border: 1px solid #aaa;
-  background-color: #fff;
-  outline: none;
-  border-radius: 15px;
-  font-size: 16px;
-}
-.buttons button:first-child{
-  color: blue;
-}
-.buttons button:last-child{
-  color: red;
-}
-.active{
-  color: red;
+.sub-title {
+  text-align: center;
+  color: #444;
+  font-size: 30px;
+  margin-top: 25px;
+  font-weight: 700;
+  text-shadow: 3px 3px #00000037;
 }

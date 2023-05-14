@@ -1,61 +1,118 @@
-import React, { useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {v4} from "uuid"
-const ContactForm = ({setUsers, title}) => {
+import { v4 } from "uuid";
+import { UsersContext } from "../../context/Context";
+import "./style.css";
+
+const ContactForm = ({ title }) => {
   const navigate = useNavigate();
+  let {users, setUsers} = useContext(UsersContext);
   const fullName = useRef();
   const phone = useRef();
   const img = useRef();
+  const textarea = useRef();
   const location = useLocation();
-  
-  if(location.pathname === "/edit"){
-    let editUser = location.state;
-    // fullName.current.value = editUser.fullName;
-    // phone.current.value = editUser.phone;
-    // img.current.value = editUser.img;
-  }
+  let globalObj;
 
-  const onBack = () => {
-    navigate(-1);
-  }
   const onAdd = (e) => {
     e.preventDefault();
+  };
 
-    const newContact = {
-      id: v4(),
-      fullName: fullName.current.value,
-      phone: phone.current.value,
-      img: img.current.value
+  const onOldPage = () => {
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    if (location.pathname === "/edit" && location.state) {
+      let editUser = location.state;
+      let findedElement = users.findIndex((item) => item.id === editUser.id);
+      globalObj = {
+        id: editUser.id,
+        index: findedElement,
+      };
+      fullName.current.value = editUser.fullName;
+      phone.current.value = editUser.phone;
+      img.current.value = editUser.img;
+      textarea.current.value = editUser.textarea;
     }
-    setUsers(prev => [...prev, newContact]);
-    navigate(`/contact/${newContact.id}`)
-  }
+    if (location.pathname === "/add") {
+      fullName.current.value = "";
+      phone.current.value = "";
+       img.current.value = "";
+       textarea.current.value = "";
+    }
+  }, [location.pathname]);
+
+  const onSave = () => {
+    if (location.pathname === "/add") {
+      const newContact = {
+        id: v4(),
+        fullName: fullName.current.value,
+        phone: phone.current.value,
+        img: img.current.value,
+        textarea: textarea.current.value,
+      };
+      if (newContact.fullName && newContact.phone && newContact.img) {
+        setUsers((prev) => [...prev, newContact]);
+        navigate(`/contact/${newContact.id}`);
+      }
+    }
+    if (location.pathname === "/edit") {
+      if(fullName.current.value && phone.current.value && img.current.value){
+        let findElement = {
+          id: globalObj.id,
+          fullName: fullName.current.value, 
+          phone: phone.current.value,
+          img: img.current.value,
+          textarea: textarea.current.value
+        };
+        users.splice(globalObj.index, 1, findElement);
+      }
+      console.log(users);
+      setUsers([...users]);
+      navigate(`/contact/${globalObj.id}`);
+    }
+  };
+
   return (
-    <div className="w-75 mx-auto">
-      <button className="btn btn-outline-primary" onClick={() => onBack()}>Back</button>
-      <h1>{title}</h1>
+    <div className="forma">
+      
+      <h1 className="title">{title}</h1>
       <form onSubmit={(e) => onAdd(e)}>
         <input
-        ref={fullName}
+          ref={fullName}
+          className="input"
           type="text"
-          className="form-control"
-          placeholder="Enter your full name"
+          placeholder="FISH"
         />
         <input
-        ref={phone}
+          ref={phone}
           type="text"
-          className="form-control"
-          placeholder="Enter your phone number"
+          className="input"
+          placeholder="Telefon raqam -> M-n: +998971234567"
         />
         <input
-        ref={img}
+          ref={img}
           type="url"
-          className="form-control"
-          placeholder="Enter img"
+          className="input"
+          placeholder="Rasm linkini jo'nating"
         />
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-success">Add</button>
-          <button className="btn btn-danger">Delete</button>
+        <textarea ref={textarea} className="input" placeholder="Sizning fikringiz ..."></textarea>
+        <div className="btn-group">
+          <button
+            className="button btn-save"
+            type="submit"
+            onClick={() => onSave()}
+          >
+            Save
+          </button>
+          <button
+            className="button btn-cancel"
+            type="button"
+            onClick={() => onOldPage()}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>
